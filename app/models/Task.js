@@ -6,6 +6,7 @@ const TaskSchema = new mongoose.Schema(
     deadline: { type: Date, required: true },
     pages: { type: Number, required: true },
     address: { type: String, required: true },
+    phonenumber: { type: Number, required: true },
     matchedWriter: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Write", // Reference to the Write model

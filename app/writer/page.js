@@ -10,6 +10,7 @@ const Writer = () => {
     work: "",
     time: "",
     address: "",
+    phonenumber: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -35,7 +36,7 @@ const Writer = () => {
 
       if (response.ok) {
         toast.success("Writer details submitted successfully!");
-        setFormData({ work: "", time: "", address: "" }); // Reset form
+        setFormData({ work: "", time: "", address: "",phonenumber:"" }); // Reset form
       } else {
         toast.error(result.error || "Error submitting writer details!");
       }
@@ -233,6 +234,28 @@ const Writer = () => {
                   required
                   placeholder="Enter your full address"
                 />
+              </motion.div>
+
+               <motion.div variants={itemVariants}>
+                <div className="flex items-center mb-2">
+                  <Clock size={18} className="mr-2 text-blue-600 dark:text-blue-400" />
+                  <label htmlFor="number" className="text-lg font-medium text-gray-700 dark:text-gray-200">
+                    Phone Number
+                  </label>
+                </div>
+                <input
+  id="number"
+  type="tel"  // better for phone numbers
+  name="phonenumber"
+  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+  value={formData.phonenumber}
+  onChange={handleChange}
+  required
+  maxLength="10"
+  pattern="\d{10}"
+  placeholder="Enter your phone number"
+/>
+
               </motion.div>
 
               <motion.div 

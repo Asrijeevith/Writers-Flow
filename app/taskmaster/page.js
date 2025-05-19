@@ -11,6 +11,7 @@ const Taskmaster = () => {
     deadline: "",
     pages: "",
     address: "",
+    phonenumber: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -53,7 +54,7 @@ const Taskmaster = () => {
       if (response.ok) {
         toast.success("Task submitted successfully!");
         await checkMatch(result.data._id);
-        setFormData({ work: "", deadline: "", pages: "", address: "" }); // Reset form
+        setFormData({ work: "", deadline: "", pages: "", address: "",phonenumber:"" }); // Reset form
       } else {
         toast.error("Failed to submit task");
       }
@@ -308,6 +309,28 @@ const Taskmaster = () => {
                   placeholder="Enter your full address"
                 />
               </motion.div>
+
+              <motion.div variants={itemVariants}>
+                              <div className="flex items-center mb-2">
+                                <Clock size={18} className="mr-2 text-blue-600 dark:text-blue-400" />
+                                <label htmlFor="number" className="text-lg font-medium text-gray-700 dark:text-gray-200">
+                                  Phone Number
+                                </label>
+                              </div>
+                              <input
+                id="number"
+                type="tel"  // better for phone numbers
+                name="phonenumber"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                value={formData.phonenumber}
+                onChange={handleChange}
+                required
+                maxLength="10"
+                pattern="\d{10}"
+                placeholder="Enter your phone number"
+              />
+              
+                            </motion.div>
 
               <motion.div 
                 className="pt-4"

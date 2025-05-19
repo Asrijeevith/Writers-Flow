@@ -3,6 +3,10 @@ import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 
+import { connectMongo } from "../../../lib/mongodb"; // ✅ adjust path if needed
+import { User } from "../../../models/User";          // ✅ adjust path if needed
+import bcrypt from "bcryptjs";
+
 const providers = [
   GithubProvider.default({
     clientId: process.env.GITHUB_CLIENT_ID ?? "",
@@ -15,21 +19,36 @@ const providers = [
   CredentialsProvider.default({
     name: "Credentials",
     credentials: {
+      name: { label: "Name", type: "text" },
       email: { label: "Email", type: "email" },
       password: { label: "Password", type: "password" }
     },
     async authorize(credentials) {
-      // This is where you would typically validate against your database
-      // For demo purposes, we're using a simple check
-      if (credentials.email && credentials.password) {
-        // Return a mock user
-        return {
-          id: "1",
-          name: "Demo User",
-          email: credentials.email,
-        };
+      await connectMongo();
+
+      const { email, password } = credentials;
+
+      if (!email || !password) {
+        throw new Error("Email and password are required");
       }
-      return null;
+
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        throw new Error("User not found. Please sign up first.");
+      }
+
+      const isPasswordValid = await bcrypt.compare(password, user.password);
+
+      if (!isPasswordValid) {
+        throw new Error("Invalid password");
+      }
+
+      return {
+        id: user._id.toString(),
+        name: user.name,
+        email: user.email,
+      };
     }
   }),
 ];
@@ -37,7 +56,7 @@ const providers = [
 export const authOptions = {
   providers,
   pages: {
-    signIn: '/login',
+    signIn: '/login', // custom login page
   },
   session: {
     strategy: "jwt",

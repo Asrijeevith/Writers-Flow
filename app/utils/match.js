@@ -17,3 +17,21 @@ export async function checkMatch(taskId) {
     console.error("Matching Error:", error);
   }
 }
+
+export async function checkWriterMatches(writerId) {
+  try {
+    const res = await fetch(`/api/match?writerId=${writerId}`);
+    const data = await res.json();
+
+    if (res.ok && data.match && data.match.length > 0) {
+      toast.success(`✅ Found ${data.match.length} matching tasks.`);
+    } else {
+      toast.error("❌ No matching tasks found for this writer.");
+    }
+
+    return data;
+  } catch (error) {
+    toast.error("❌ Error fetching match data.");
+    console.error("Matching Error:", error);
+  }
+}

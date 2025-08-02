@@ -1,41 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ✍️ Writers-Flow – Where Writers & Taskmasters Collaborate Smartly
 
-## Getting Started
+> A full-stack web app for teams, students, and content creators to manage writing tasks seamlessly — with real-time tracking, clean UI, and role-based dashboards.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 📖 Overview
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Writers-Flow** is a productivity platform built for **collaborative writing and task management**.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Taskmasters can assign and track tasks, while Writers can accept, work on, and submit them — all through dedicated dashboards.  
+It mirrors real-world collaboration with a clear, smart, and intuitive interface.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🚀 Core Features
 
-To learn more about Next.js, take a look at the following resources:
+- 🔐 **Authentication**
+  - Manual login & secure OAuth (Google & GitHub)
+  - JWT-based protected routing
+- 📜 **Task Management**
+  - Create, assign, update, and delete tasks
+  - Writers can accept & submit tasks
+- 🧑‍💻 **Role-Based Dashboards**
+  - Writers and Taskmasters have separate flows
+- 📱 **Responsive UI**
+  - Built with Tailwind CSS for clean, modern layouts
+- 🧩 **Full CRUD**
+  - Users, tasks, submissions — all data editable
+- 🔒 **Access Control**
+  - Protected routes for different roles
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠️ Tech Stack
 
-## Deploy on Vercel
+| Layer        | Tech Used                             |
+|--------------|----------------------------------------|
+| **Frontend** | React.js, JavaScript, Tailwind CSS     |
+| **Backend**  | Node.js, Express.js                    |
+| **Database** | MongoDB                                |
+| **Auth**     | JWT + OAuth (Google & GitHub)          |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-"# Writers-Flow" 
-"# Writers-Flow" 
-"# Writers-Flow" 
-"# Writers-Flow" 
-"# Writers-Flow" 
+
+
